@@ -112,7 +112,7 @@
       ```
       5. script 标签在页面中可以出现多对  
 
-   6. `script`标签一般放在`body`标签的最后（与加载顺序和外部引入有关），有时会放在`head`标签中  
+      6. `script`标签一般放在`body`标签的最后（与加载顺序和外部引入有关），有时会放在`head`标签中  
 
       7. 如果`script`标签是引入外部js文件的作用，那么这对标签这种不要写任何的js代码；
       如果要写代码，重新写一对`script`标签再写  
@@ -232,14 +232,11 @@
    console.log(typeof nll);  // 不是null(是object)
    console.log(typeof undef);  // undefined
    console.log(typeof obj);  // object
-   ```
-   
-
+   ```  
 <br>
 
-> ## 三、？？  
-
-- 数据类型  
+> ## 三、数据类型  
+1. 一  
 
 
 - 运算符  
