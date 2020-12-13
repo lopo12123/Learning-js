@@ -248,7 +248,7 @@
    ``` javascript
    console.log(Number.MAX_VALUE);  // 最大值
    console.log(Number.MIN_VALUE);  // 最小值
-
+   
    Infinity;  // 无穷大
    -Infinity;  // 无穷小
 
