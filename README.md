@@ -270,12 +270,111 @@
    1. 字符串长度  
    ``` javascript
    var str = "abcdefg";
+   console.log(str.length);  // 输出 7
    ```
-   2. 22222  
+   2. 字符串拼接
+   ``` javascript
+   // 1. 使用 '+' 连接多个字符串
+   var str1 = "你";
+   var str2 = "好";
+   console.log(str1 + str2);  // 输出 "你好"(string类型)
 
-8. **boolean、undefined** 及 **null** 类型  
+   // 2. 如果一个是字符串其他是数字则还是拼接
+   var str = "10";
+   var num = 2;
+   console.log(str + num);  // 输出 102(string类型)
 
-9.  ？？
+   // 3. 如果一个是字符串另一个是数字则计算加减(隐式转换: 自动将字符串类型转换成了数字类型)
+   var str = "10";
+   var num = 2;
+   console.log(str - num);  // 输出 8(number类型)
+   console.log(str * num);  // 输出 20(number类型)
+   ```
+   3. 转义符  
+
+   | 符号 | 字符 |
+   | :-: | :-: |
+   | \\b | 退格 |
+   | \\f | 走纸换页 |
+   | \\n | 换行 |
+   | \\r | 回车 |
+   | \\t | 横向跳格(ctrl+I) |
+   | \\' | 单引号 |
+   | \\" | 双引号 |
+   | \\\ | 反斜杠 |
+
+8. **boolean**类型、**undefined** 及 **null**  
+   1. Boolean类型  
+      - Boolean类型值: true / false
+      - 计算机内部存储: true = 1 / false = 0
+   2. undefined和null  
+      - undefined表示一个声明了没有赋值的变量，变量只声明的时候值默认为undefined
+      - null表示一个空，变量的值如果想要为null，必须手动设置
+
+9. **object**类型  
+   - **pass**
+
+10. 类型转换
+    1. 其他类型转**数字**类型(三种)  
+    ``` javascript
+    // 1. 转整数 parseInt()
+    // 数字直接转 / 数字开头转 / 字母开头不转 / 小数取整
+    console.log(parseInt("10"));  // 10
+    console.log(parseInt("10fdsfd"));  // 10
+    console.log(parseInt("g10"));  // NaN
+    console.log(parseInt("1fds0"));  // 1
+    console.log(parseInt("10.98"));  // 10
+    console.log(parseInt("10.98fdsfd"));  // 10
+
+    // 2. 转小数 parseFloat()
+    // 无小数部分则显示整数
+    console.log(parseFloat("10"));  // 10
+    console.log(parseFloat("10fdsfd"));  // 10
+    console.log(parseFloat("g10"));  // NaN
+    console.log(parseFloat("1fds0"));  // 1
+    console.log(parseFloat("10.98"));  // 10.98
+    console.log(parseFloat("10.98fdsfd"));  // 10.98
+
+    // 3. 转数字 Number()
+    // 带有字母转换结果都是NaN (转换方式比1、2严格)
+    console.log(Number("10"));  // 10
+    console.log(Number("10fdsfd"));  // NaN
+    console.log(Number("g10"));  // NaN
+    console.log(Number("1fds0"));  // NaN
+    console.log(Number("10.98"));  // 10.98
+    console.log(Number("10.98fdsfd"));  // NaN
+    ```
+    2. 其他类型转**字符串**类型  
+    ``` javascript
+    // 1. object.toString()
+    var num1 = 10;
+    console.log(num1.toString());  // 10 (string类型)
+
+    // 2. String()
+    var num2 = 20;
+    console.log(String(num2));  // 20 (string类型)
+
+    // 如果变量有意义，调用.toString()转换
+    // 如果变量没有意义，调用String()转换
+    var num3;
+    var num4 = null;
+    console.log(num3.toString);  // 报错
+    console.log(num4.toString);  // 报错
+    console.log(String(num3));  // undefined
+    console.log(String(num4));  // null
+    ```
+    3. 其他类型转**布尔**类型  
+    ``` javascript
+    // 1. Boolean(value);
+    console.log(Boolean(1));  // true
+    console.log(Boolean(0));  // false
+    console.log(Boolean(11));  // true
+    console.log(Boolean(-10));  // true
+    console.log(Boolean("哈哈"));  // true
+    console.log(Boolean(""));  // false
+    console.log(Boolean(null));  // false
+    console.log(Boolean(undefined));  // false
+    ```
 <br>
 
 > ## 三、？？？
