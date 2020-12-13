@@ -238,20 +238,19 @@
    - 不要用小数验证小数  
    - 不要用NaN验证NaN  
    <br>
+
    1. js可以表示的进制  
    ``` javascript
    var num1 = 12;  // 十进制
-   var num2 = 012;  // 八进制(以0开头)  =十进制的10
-   var num3 = 0x12;  // 十六进制(以0x开头)  =十进制的18
+   var num2 = 012;  // 八进制(以0开头)  十进制的10
+   var num3 = 0x12;  // 十六进制(以0x开头)  十进制的18
    ```  
    2. 数字类型的范围：最小值和最大值  
    ``` javascript
    console.log(Number.MAX_VALUE);  // 最大值
    console.log(Number.MIN_VALUE);  // 最小值
-   
    Infinity;  // 无穷大
    -Infinity;  // 无穷小
-
    NaN;  // not a number  NaN != NaN
    isNaN();  // is 'not a number'  验证是否是NaN(不是数字): 是数字输出false; 不是数字输出true
    console.log(isNaN(10));  // false
