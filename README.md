@@ -233,10 +233,55 @@
    console.log(typeof undef);  // undefined
    console.log(typeof obj);  // object
    ```  
+
+6. **Number** 类型  
+   - 不要用小数验证小数  
+   - 不要用NaN验证NaN  
+   <br>
+   1. js可以表示的进制
+   ``` javascript
+   var num1 = 12;  // 十进制
+   var num2 = 012;  // 八进制(以0开头)  =十进制的10
+   var num3 = 0x12;  // 十六进制(以0x开头)  =十进制的18
+   ```
+   2. 数字类型的范围：最小值和最大值
+   ``` javascript
+   console.log(Number.MAX_VALUE);  // 最大值
+   console.log(Number.MIN_VALUE);  // 最小值
+
+   Infinity;  // 无穷大
+   -Infinity;  // 无穷小
+
+   NaN;  // not a number  NaN != NaN
+   isNaN();  // is 'not a number'  验证是否是NaN(不是数字): 是数字输出false; 不是数字输出true
+   console.log(isNaN(10));  // false
+   console.log(isNaN("你好"));  // true
+   ```
+   3. 小数计算
+   ``` javascript
+   // 小数的计算不一定精确
+   // 原因：小数的二进制存储不一定精确
+   var x = 0.1;
+   var y = 0.2;
+   var sum = x + y;
+   console.log(sum == 0.3);  // 输出为false
+   ```  
+
+7. **string** 类型  
+   1. 字符串长度  
+   ``` javascript
+   var str = "abcdefg";
+   ```
+   2. 22222  
+
+8. **boolean、undefined** 及 **null** 类型  
+
+9.  ？？
 <br>
 
-> ## 三、数据类型  
-1. 一  
+> ## 三、？？？
+1. 一 一 一  
+<br>
 
-
-- 运算符  
+> ## 四、？？？
+1. 一、一、一
