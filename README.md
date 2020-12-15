@@ -418,7 +418,7 @@
        // 7. 赋值运算符 =
        ```
 
-12. 语句、表达式、字面量
+12. 语句、表达式、字面量  
 <br>
 
 > ## 三、流程控制  
@@ -500,7 +500,52 @@
       }
    ```
 4. **break**、**continue** 关键字
+   1. **break**  
+      遇到 break 则立刻跳出当前循环  
+   2. **continue**  
+      遇到 continue 则立刻开始下次循环  
 <br>
 
-> ## 四、？？？
-1. 一、一、一
+> ## 四、数组  
+
+- 数组索引从`0`开始  
+- 数组长度 `arr.length`
+
+1. 通过构造函数创建数组  
+   ``` javascript
+   // var array(数组名) = new Array(数组长度);
+   var empty_array = new Array();  // 空数组
+   console.log(empty_array);  // 输出Array(0)或[]
+
+   var my_array1 = new Array(5);
+   console.log(my_array);  // 输出Array(5), 其中每个值都是undefined
+
+   // Array(一个数字)表示数组长度;
+   // Array(多个数字)表示数组元素;
+   var array1 = new Array(5);  // 数组长度为5, 数组元素为undefined
+   var array2 = new Array(1, 2, 3, 4, 5);  // 数组长度为5, 数组元素为[1, 2, 3, 4, 5]
+   ```
+2. 通过字面量创建数组  
+   ``` javascript
+   // var 数组名 = [];
+   var my_array2 = [];  // 空数组
+   ```
+3. 注意问题
+   1. 数组中存储的数据类型一定是一样的吗？
+      ``` javascript
+      // 类型可以不一样
+      var arr = [10, "哈哈", true, null, undefined, new Object()];
+      console.log(arr);
+      ```
+   2. 数组的长度是否可以改变？
+      ``` javascript
+      // 长度可以改变
+      var arr = [];  // length = 0
+      arr[0] = 1;  // length = 1
+      arr[1] = 2;  // length = 2
+      console.log(arr.length);
+      ```
+<br>
+
+> ## 五、五五五
+
