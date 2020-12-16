@@ -120,9 +120,13 @@
 
 > ## 二、变量  
 1. 变量声明  
+   - `var` 声明**变量**  
+   - `let` 声明的变量**只在**let所在的代码块`{}`内有效，在代码块外不能访问(ES6)  
+   - `const` 声明**常量**，必须进行**初始化**并且**不可修改**  
+
    1. js中存储数据使用变量的方式 (名字，值 --> 数据)  
 
-   2. js中声明变量都用`var` --> 存储数据，数据应该有对应的数据类型  
+   2. js中声明变量用`var` --> 存储数据，数据应该有对应的数据类型  
 
    3. js中字符串类型的值都用**单引号**或**双引号**  
 
@@ -530,7 +534,7 @@
    // var 数组名 = [];
    var my_array2 = [];  // 空数组
    ```
-3. 注意问题
+3. 注意问题  
    1. 数组中存储的数据类型一定是一样的吗？
       ``` javascript
       // 类型可以不一样
@@ -545,7 +549,68 @@
       arr[1] = 2;  // length = 2
       console.log(arr.length);
       ```
+4. 操作
+   1. 遍历数组  
+   ``` javascript
+   // for 循环遍历数组
+   var arr = [10, 20, 30, 40, 50];
+   for (var i = 0; i < arr.length; i++) {
+      console.log(arr[i]);
+   }
+   ```
+   2. 排序
+   ``` javascript
+   // 冒泡排序
+   var arr = [9, 1, 2, 5, 8, 7, 6, 4, 3];
+   for (var i = 0; i < arr.length - 1; i++) {
+      for (var j = 1; j < arr.length - 1 - i; j++) {
+         if(arr[j] > arr[j + 1]) {  // 从小到大
+            var temp = arr[j];
+            arr[j] = arr[j + 1];
+            arr[j + 1] = temp;
+         }
+      }
+   }
+   console.log(arr);
+   ```
 <br>
 
-> ## 五、五五五
+> ## 五、函数  
+1. 函数
+   1. 函数的作用：代码的重用  
+   2. 函数的定义  
+      ``` javascript
+      function 函数名字() {
+         函数体;
+      }
+      ```
+   3. 函数的调用：`函数名();`  
+   4. 注意问题  
+      1. 需要先定义后使用  
+      2. 不能重名  
+      3. 遵循驼峰命名法  
+2. 参数  
+   1. 形参  
+      函数在**定义**的时候小括号里的变量叫形参  
+   2. 实参  
+      函数在**调用**的时候小括号里传入的值叫实参，实参可以是变量也可以是值  
+   ``` javascript
+   // example
+   function consoleSum(x, y) {
+      var sum = x + y;  // 计算和
+      console.log(sum);  // 输出
+   }
+
+   var x = parseInt(prompt("输入第一个数字"));
+   var y = parseInt(prompt("输入第二个数字"));
+   consoleSum(x, y);
+   ```
+3. 返回值  
+   `return`
+<br>
+
+> ## 六、six
+
+
+
 
