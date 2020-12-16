@@ -5,9 +5,16 @@
     </head>
     <body>
         <script>
-            var str = "123";
-            var num = 4;
-            console.log(str * num);
+            f1();
+            console.log(c);  // 9
+            console.log(b);  // 9
+            console.log(a);  // 报错
+            function f1(){
+                var a = b = c = 9;
+                console.log(a);  // 9
+                console.log(b);  // 9
+                console.log(c);  // 9
+            }
         </script>
     </body>
 </html>
