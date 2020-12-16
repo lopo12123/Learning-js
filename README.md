@@ -573,6 +573,31 @@
    }
    console.log(arr);
    ```
+5. 数组的一些方法
+   1. `push()`  
+      **push()** 方法可以向数组的末尾添加一个或多个元素，并返回新的长度
+      ``` javascript
+      var arr = [1, 2, 3, 4]
+      newLength = arr.push(5, 6);
+      console.log(arr);  // [1, 2, 3, 4, 5, 6]
+      console.log(newLength);  // 6
+      ```
+   2. `unshift()`  
+      **unshift()** 方法可以向数组的开头添加一个或多个元素，并返回新的长度
+      ``` javascript
+      var arr = [1, 2, 3, 4]
+      newLength = arr.unshift(5, 6);
+      console.log(arr);  // [5, 6, 1, 2, 3, 4]
+      console.log(newLength);  // 6
+      ```
+   3. `pop()`  
+      **pop()** 方法可以删除并返回数组的最后一个元素  
+      ``` javascript
+      var arr = [5, 4, 3, 2]
+      lastNumber = arr.pop();
+      console.log(arr);  // [5, 4, 3]
+      console.log(lastNumber);  // 2
+      ```
 <br>
 
 > ## 五、函数  
@@ -607,6 +632,195 @@
    ```
 3. 返回值  
    `return`
+4. `arguments`对象 - - 伪数组  
+   使用`arguments`对象可以获取传入的参数的值
+   ``` javascript
+   // example
+   function f1() {
+      // console.log(arguments);
+      // console.log(arguments.length);  // 获取传入的参数的个数
+      var sum = 0;  // 求传入的所有参数的和
+      for(var i = 0; i < arguments.length; i++) {
+         sum += arguments[i];
+      }
+      return sum;
+   }
+   var result = f1(1, 2, 3, 4, 5);
+   console.log(result);  // 15
+   ```
+5. 函数的其他定义方式  
+   - 命名函数  
+   - 匿名函数  
+
+   1. 函数声明 - - 函数定义  
+      ``` javascript
+      // example
+      function f1() {  // 定义
+         console.log("函数定义1");
+      }
+
+      f1();  // 调用
+      ```
+   2. 匿名函数 - - 函数表达式  
+      ``` javascript
+      // 把一个函数给一个变量，此时形成了函数表达式
+      // 注意：函数表达式最后需要加分号
+      var 函数 = 匿名函数;
+
+      // example
+      var f2 = function () {  // 定义
+         console.log("函数定义2");
+      };
+
+      f2();  // 调用
+      ```
+   3. 函数的自调用 - - 声明的同时调用(一次性的)
+      ``` javascript
+      // 一次性 - - 安全(避免重名、冲突)
+
+      var f1 = function(){console.log("函数定义3")};
+      f1();
+
+      // example
+      // 上式可以表达成如下
+      (function(){console.log("函数定义3")})();
+      ```
+   4. 区别  
+      函数定义：重名则直接覆盖(不管在哪里调用)  
+      函数表达式：重名则类似变量赋值(按顺序调用、覆盖)  
+6. 函数的数据类型  
+   1. 函数的数据类型为`function`
+   ``` javascript
+   function f1(){
+      console.log("haha");
+   }
+   console.log(typeof(f1));  // 输出 function
+   ```
+   2. 函数作为参数  
+   - 函数可以作为参数使用，如果一个函数作为参数，那么这个参数叫做回调函数  
+   ``` javascript
+   function f1(){
+      console.log("haha");
+   }
+   function f2(fn){
+      fn();
+   }
+   f2(f1);  // 输出 haha
+   ```
+   3. 函数作为返回值  
+   ``` javascript
+   function f1(){
+      return function (){
+         console.log("hahaha");
+      }
+   }
+   var ff = f1();  // 此时 ff 是一个函数了
+   ff();  // 输出 hahaha
+   ```
+7. 作用域  
+   1. 全局变量：用`var`声明的变量一般都是全局变量  
+   2. 局部变量：函数内部定义的变量为局部变量  
+   3. 隐式全局变量：不加`var`关键字修饰
+   ``` javascript
+   // 1. 全局/局部 区别
+   var a = 1;  // 全局
+   function f1(){
+      var b = 2;  // 局部
+      console.log(a);  // 1
+      console.log(b);  // 2
+   }
+   f1();
+   console.log(a);  // 1
+   console.log(b);  // 报错
+
+   // 2. 隐式全局变量
+   function f1(){
+      number = 1;
+   }
+   console.log(number);  // 可以调用 输出 1
+
+   // 注意：全局变量是不能被删除的；隐式全局变量是可以被删除的
+   var num1 = 1;
+   num2 = 2;
+   delete num1;
+   delete num2;
+   console.log(num1);  // 1
+   console.log(num2);  // undefined
+   ```
+   4. 全局作用域：全局变量的使用范围  
+   5. 局部作用域：局部变量的使用范围  
+   6. 块级作用域：一对`{}`可以看作是一块 - - `let`关键字可以限制变量的作用域为块级作用域  
+8. 作用域链  
+   ``` javascript
+   // 需要使用的变量首先在当前级作用域寻找
+   // 没有则在上一级作用域寻找
+   // 0级作用域没有找到则为undefined
+   var num = 10;  // 0级作用域
+   function f1(){
+      var num = 20;  // 1级作用域
+      function f2(){
+         var num = 30;  // 2级作用域
+         function f3(){
+            var num = 40;  // 3级作用域
+            console.log(num);
+         }
+         f3();
+      }
+      f2();
+   }
+   f1();
+   ```
+9. 预解析 - - 提前解析代码  
+   **预解析**：在解析代码之前  
+   - 把**变量**的声明提前了 - - 提前到当前所在的作用域的最上面  
+   - **函数**的声明也提前了 - - 提前到当前所在的作用域的最上面  
+   ``` javascript
+   // 1. 隐式全局变量 预解析
+   f1();
+   console.log(c);  // 9
+   console.log(b);  // 9
+   console.log(a);  // 报错
+   function f1(){
+      var a = b = c = 9;
+      console.log(a);  // 9
+      console.log(b);  // 9
+      console.log(c);  // 9
+   }
+
+   function f1(){  // 预解析后的顺序
+      var a;  // 局部变量
+      a = 9;
+      b = 9;  // 隐式全局变量
+      c = 9;  // 隐式全局变量
+      console.log(a);  // 9
+      console.log(b);  // 9
+      console.log(c);  // 9
+   }
+   f1();
+   console.log(c);  // 9
+   console.log(b);  // 9
+   console.log(a);  // 报错
+
+   // 2. 函数
+   f1();  // 报错
+   var f1 = function (){
+      console.log(a);
+      var a = 1;
+   };
+
+   var f1;  // 预解析后的顺序
+   f1();
+   f1 = function (){
+      console.log(a);
+      var a = 1;
+   };
+
+   // 总结
+   // 1. 预解析中，变量的提升只会在当前作用域中提升，提升到当前作用域的最上面
+   // 2. 函数中的变量只会提前到函数的作用域的最前面，不会出去
+   // 3. 预解析会分段(多对的script标签中的函数重名，预解析时不会冲突)
+   // 4. 先提升var，再提升function
+   ```
 <br>
 
 > ## 六、six
