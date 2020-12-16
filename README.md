@@ -651,7 +651,7 @@
 5. 函数的其他定义方式  
    - 命名函数  
    - 匿名函数  
-
+<br>
    1. 函数声明 - - 函数定义  
       ``` javascript
       // example
@@ -770,10 +770,11 @@
    }
    f1();
    ```
-9. 预解析 - - 提前解析代码  
-   **预解析**：在解析代码之前  
+9. **预解析** - - 提前解析代码  
+   预解析：在解析代码之前  
    - 把**变量**的声明提前了 - - 提前到当前所在的作用域的最上面  
    - **函数**的声明也提前了 - - 提前到当前所在的作用域的最上面  
+<br>
    ``` javascript
    // 1. 隐式全局变量 预解析
    f1();
@@ -823,7 +824,137 @@
    ```
 <br>
 
-> ## 六、six
+> ## 六、对象  
+1. 概念  
+   对象是一组**无序**的相关属性和方法的集合  
+   - 属性：事物的特征  
+   - 方法：事物的行为  
+      ``` javascript
+      // example
+      对象：手机
+      属性：大小、颜色、尺寸...
+      方法：打电话、发短信、玩游戏...
+      ```
+2. 创建对象  
+   - 对象里面的属性或者方法采用**键值对**的形式 - {属性名: 属性值}  
+   - 多个属性或者方法中间用**逗号**隔开  
+   - 方法冒号后面跟的是一个**匿名函数**  
+<br>
+   1. 利用**字面量**创建  
+   ``` javascript
+   // var obj = {};  // 创建了一个空的对象
+   var obj = {  // 创建一个有属性和方法的对象
+      name: '小明',
+      age: 18,
+      sex: '男',
+      sayHi: function(){
+         console.log('hi');
+      }
+   }
+   ```
+   2. 利用`new Object`创建  
+   ``` javascript
+   var obj = new Object();  // 创建了一个空对象
+   obj.name = '小明';  // 添加属性和方法
+   obj.age = 18;
+   obj.sex = '男';
+   obj.sayHi = function() {
+      console.log('hi');
+   };
+   ```
+   3. 利用**构造函数**创建  
+   使用构造函数的原因：使用上面两种方法一次只能创建一个对象  
+   ``` javascript
+   // 1. 构造函数名字首字母要大写
+   // 2. 构造函数不需要 return 就能返回结果
+   // 3. 调用构造函数必须使用 new
+
+   // 构造函数语法格式
+   function 构造函数名() {  // 创建构造函数
+      this.属性 = 值;
+      this.方法 = function() {}
+   }
+   new 构造函数名();  // 调用
+
+   // example
+   function Student(name, age, sex) {  // 创建
+      this.name = name;
+      this.age = age;
+      this.sex = sex;
+   }
+   new Student('小明', 18, '男');  // 调用
+   new Student('小刚', 18 , '男');
+   ```
+   4. `new`关键字
+      1. new 构造函数可以在内存中创建一个空的对象
+      2. this 指向刚在创建的空对象
+      3. 执行构造函数的代码，给空的对象添加属性和方法
+      4. 返回这个方法 - - 所以构造函数不需要 `return`
+3. 使用对象  
+   1. 调用对象的属性 2种方法  
+   ``` javascript
+   console.log(obj.name);  // 对象名.属性名
+   console.log(obj['age']);  // 对象名['属性名']
+   ```
+   2. 调用对象的方法  
+   ``` javascript
+   obj.sayHi();  // 对象名.方法()
+   ```
+4. 遍历对象  
+   **for-in** 语句用于对**数组**或**对象**的属性进行循环操作
+   ``` javascript
+   // 语法格式
+   for(变量 in 对象){
+      // do something
+   }
+
+   // example
+   var obj = {  // 创建一个对象
+      name: '小明',
+      age: 18,
+      sex: '男',
+      sayHi: function() {
+         console.log('hi~');
+      }
+   }
+
+   for(var k in obj) {  // 遍历对象
+      console.log(k);  // 得到属性名
+      console.log(obj[k]);  // 得到属性值
+   }
+   ```
+5. **内置对象**  
+   - Math 对象  
+   - Date 对象  
+   - Array 对象  
+   - String 对象  
+<br>
+   1. 对象分类  
+      - 自定义对象  
+      - 内置对象  
+      - 浏览器对象  
+   2. 工具  
+      - [MDN](https://www.w3school.com.cn/index.html)  
+      - [W3C](https://www.w3school.com.cn/index.html)  
+   3. **Math** 对象  
+      [MDN文档](https://developer.mozilla.org/zh-CN/search?q=math)  
+      Math 对象不是一个构造函数，所以不需要用new 来生成对象  
+      ``` javascript
+      console.log(Math.PI);  // 圆周率
+      console.log(Math.max(1, 5, 4));  // 求最大值
+      console.log(Math.max(1, 2, '不是数字'));  // NaN
+      console.log(Math.max());  // -Infinity
+
+      // Math 对象的其他方法
+      Math.floor();  // 向下取整
+      Math.ceil();  // 向上取整
+      Math.round();  // 四舍五入 - 特殊：x.5 往大了取(正/负)
+      Math.abs();  // 绝对值
+      Math.max()/Math.min();  // 最大/最小值
+      ```
+
+
+
 
 
 
