@@ -5,16 +5,14 @@
     </head>
     <body>
         <script>
-            f1();
-            console.log(c);  // 9
-            console.log(b);  // 9
-            console.log(a);  // 报错
-            function f1(){
-                var a = b = c = 9;
-                console.log(a);  // 9
-                console.log(b);  // 9
-                console.log(c);  // 9
-            }
+            var obj = new Object();  // 创建了一个空对象
+            obj.name = '小明';
+            obj.age = 18;
+            obj.sex = '男';
+            obj.sayHi = function() {
+                console.log('hi');
+            };
+            obj.sayHi();
         </script>
     </body>
 </html>
