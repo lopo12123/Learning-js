@@ -5,14 +5,18 @@
     </head>
     <body>
         <script>
-            var obj = new Object();  // 创建了一个空对象
-            obj.name = '小明';
-            obj.age = 18;
-            obj.sex = '男';
-            obj.sayHi = function() {
-                console.log('hi');
-            };
-            obj.sayHi();
+            var obj = {
+            name: '小明',
+            age: 18,
+            sex: '男',
+            sayHi: function() {
+                console.log('hi~');
+            }
+        }
+        for(var k in obj) {
+            console.log(k);  // 得到属性名
+            console.log(obj[k]);  // 得到属性值
+        }
         </script>
     </body>
 </html>
