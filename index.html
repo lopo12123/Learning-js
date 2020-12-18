@@ -5,18 +5,20 @@
     </head>
     <body>
         <script>
-            var obj = {
-            name: '小明',
-            age: 18,
-            sex: '男',
-            sayHi: function() {
-                console.log('hi~');
+            var str = "abcoefoxyozzopp";
+            var pos = [];
+            var times = 0;
+            pos[0] = str.indexOf('o');
+
+            if(pos[0] != -1){  // 有 o 存在
+                times = 1;
+                for(var i = pos[0]; i < str.length; i ++) {
+                    if(str.indexOf('0', pos[pos.length - 1]));
+                }
             }
-        }
-        for(var k in obj) {
-            console.log(k);  // 得到属性名
-            console.log(obj[k]);  // 得到属性值
-        }
+
+            console.log(pos);
+            console.log(times);
         </script>
     </body>
 </html>
