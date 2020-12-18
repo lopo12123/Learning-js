@@ -1000,7 +1000,7 @@
       // 3. H5 新增方法
       console.log(Date.now());
       ```
-   5. **Array()** 对象  
+   5. **Array** 对象  
       **Note**: `Array`对象是用于构造数组的全局对象，数组是类似于列表的高阶对象  
       - 创建数组  
       ``` javascript
@@ -1125,7 +1125,36 @@
       console.log(arr1);  // 输出 [1, 2, 5, 6]
       console.log(arr2);  // 输出 [3, 4]
       ```
+   6. **String** 对象  
+      **Note**: 为了方便操作基本数据类型，JS提供了三个特殊的引用类型: `String、Number、Boolean`  
+      **基本包装类型**: 把简单数据类型包装成了复杂数据类型  
+      ``` javascript
+      // 复杂数据类型才有属性和方法
+      var str = 'hello';
+      console.log(str.length);
+      
+      // 简单数据类型为什么会有属性和方法？执行类型如下
+      // 1. 把简单数据类型包装成复杂数据类型
+      var temp = new String('hello');
+      // 2. 把临时变量的值给 str
+      str = temp;
+      // 3. 销毁这个临时变量
+      temp = null;
+      ```
+      - 根据字符返回位置  
+      `indexOf() / lastIndexOf()`
+      ``` javascript
+      // examples
+      // 1. indexOf('要查找的字符', [起始位置])
+      var str = 'hello, my friends!';
+      console.log(str.indexOf('e'));  // 输出 1
+      console.log(str.indexOf('e', 2));  // 输出 13
 
-
-
-
+      // 2. lastIndexOf()  同理
+      ```
+      案例: **返回字符位置**  
+      `查找字符串"abcoefoxyozzopp"中所有o出现的位置及次数`
+      ``` javascript
+      var str = "abcoefoxyozzopp";
+      // 写了一半
+      ```
