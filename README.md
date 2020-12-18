@@ -938,7 +938,7 @@
       - [W3C](https://www.w3school.com.cn/index.html)  
    3. **Math** 对象  
       [MDN文档](https://developer.mozilla.org/zh-CN/search?q=math)  
-      Math 对象不是一个构造函数，所以不需要用new 来生成对象  
+      **Note**: `Math`对象不是一个构造函数，所以不需要用`new`来生成对象  
       ``` javascript
       console.log(Math.PI);  // 圆周率
       console.log(Math.max(1, 5, 4));  // 求最大值
@@ -954,7 +954,7 @@
       Math.random()  // 返回一个浮点数 [0, 1)
       ```
    4. **Date** 对象  
-      **只能**通过调用**Date**构造函数来实例化日期对象：以常规函数调用(即不加`new`关键字)将会返回一个字符串而不是日期对象。  
+      **Note**: **只能**通过调用`Date`构造函数来实例化日期对象：以常规函数调用(即不加`new`关键字)将会返回一个字符串而不是日期对象。  
       另外，`Date`对象没有字面量格式。  
       ``` javascript
       // Date() 日期对象 是一个构造函数 必须使用new来调用
@@ -970,7 +970,161 @@
       var date2 = new Date('2020-01-01 01:01:01');
       var date3 = new Date('2020/01/01 01:01:01');
       ```
+      - `Date`对象的一些方法  
 
+      | 方法名 | 说明 |
+      | --- | --- |
+      | getFullYear() | 获取当年 |
+      | getMonth() | 获取当月(0 - 11) |
+      | getDate() | 获取当前日期 |
+      | getDay() | 获取星期几(周日0 - 周六6) |
+      | getHours() | 获取当前小时 |
+      | getMinutes() | 获取当前分钟 |
+      | getSeconds | 获取当前秒钟 |  
+
+      **注意**  
+      - 月份范围是0-11，与实际差1  
+      - 星期从周日开始到周六(0 - 6)  
+
+      ``` javascript
+      // 获取总的毫秒数(时间戳)  起点为1970/01/01
+      // 1. valueOf()  getTime()
+      var date1 = new Date();
+      console.log(date1.valueOf());
+      console.log(date1.getTime());
+
+      // 2. 简单写法
+      var date2 = +new Date();  // +new Date()  返回的就是总的毫秒数
+      console.log(date2);
+
+      // 3. H5 新增方法
+      console.log(Date.now());
+      ```
+   5. **Array()** 对象  
+      **Note**: `Array`对象是用于构造数组的全局对象，数组是类似于列表的高阶对象  
+      - 创建数组  
+      ``` javascript
+      // 1. 字面量
+      var arr1 = [1, 2, 3, 4, 5];
+      console.log(arr[0]);
+
+      // 2. new Array()
+      var arr2 = new Array(2);  // 长度为2
+      var arr3 = new Array(1, 2, 3, 4, 5);  // 数组元素
+      console.log(arr2);  // Array(2);  empty
+      console.log(arr3);  // Array(5);  [1, 2, 3, 4, 5]
+      ```
+      - 检测是否为数组  
+      [instanceof - MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/instanceof)  
+      [Array.isArray() - MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray)
+      ``` javascript
+      // 1. 运算符 instanceof 可以用来检测是否为数组
+      var arr = [];  // 数组
+      var obj = {};  // 对象
+      console.log(arr instanceof Array);  // true
+      console.log(arr instanceof Array);  // false
+
+      // 2. 方法 Array.isArray(参数);  H5新增的方法
+      var arr = [];  // 数组
+      var obj = {};  // 对象
+      console.log(Array.isArray(arr));  // true
+      console.log(Array.isArray(obj));  // false
+      ```
+      - **增删**数组元素  
+
+      | 方法名 | 说明 | 返回值 |
+      | --- | --- | --- |
+      | push(参数1, ...) | 末尾添加一个或多个元素，**修改**原数组 | 新数组长度 |
+      | pop() | 删除数组最后一个元素，数组长度减一，**修改**原数组 | 被删除的元素 |
+      | unshift() | 向数组开头添加一个或多个元素，**修改**原数组 | 新数组长度 |
+      | shift() | 删除数组的第一个元素，数组长度减一，**修改**原数组 | 被删除的元素 |  
+      ``` javascript
+      // examples
+      var arr = [3, 4];
+      
+      // 1. push() 末尾添加 返回新数组长度
+      b = arr.push(5, 6);  // arr = [3, 4, 5, 6]; b = 4
+
+      // 2. unshift() 头部添加 返回新数组长度
+      b = arr.unshift(1, 2);  // arr = [1, 2, 3, 4, 5, 6]; b = 6
+
+      // 3. pop() 末尾删除1个 返回被删除的元素
+      b = arr.pop()  // arr = [1, 2, 3, 4, 5]; b = 6
+
+      // 4. shift() 头部删除1个 返回被删除的元素
+      b = arr.shift()  // arr = [2, 3, 4, 5]; b = 1
+      ```
+      - 获取数组索引  
+
+      | 方法名 | 说明 | 返回值 |
+      | --- | --- | --- |
+      | indexOf() | 数组中查找给定元素的第一个索引 | 存在则返回索引号，不存在则返回 -1 |
+      | lastIndexOf() | 数组中查找给定元素的最后一个索引 | 存在则返回索引号，不存在则返回 -1 |  
+      ``` javascript
+      // examples
+      var arr = [2, 3, 4, 1, 2, 3];
+
+      console.log(arr.indexOf(3));  // 输出 1
+      console.log(arr.lastIndexOf(2));  // 输出 4
+
+      console.log(arr.indexOf(5));  // 输出 -1
+      console.log(arr.lastIndexOf(5));  // 输出 -1
+      ```
+      案例 - **数组去重**  
+      `对数组 ['c', 'a', 'z', 'a', 'x', 'a', 'x', 'c', 'b'] 进行去重`
+      ``` javascript
+      var arr = ['c', 'a', 'z', 'a', 'x', 'a', 'x', 'c', 'b'];
+      var newArr = [];  // 存放去重后的数组
+
+      for(var i = 0; i < arr.length; i ++){
+         if(newArr.indexOf(arr[i]) == -1){
+            newArr[newArr.length] = arr[i];
+         }
+      }
+      console.log(newArr);  // ['c', 'a', 'z', 'x', 'b']
+      ```
+      - 数组转换为字符串  
+
+      | 方法名 | 说明 | 返回值 |
+      | --- | --- | --- |
+      | toString() | 把数组转化成字符串，逗号分隔每一项 | 返回一个字符串 |
+      | join('分隔符') | 把数组中所有元素转换成一个字符串 | 返回一个字符串 |  
+      ``` javascript
+      // 1. toString()
+      // 2. join('分隔符')
+      var arr = [1, 2, 3];
+      console.log(arr.toString());  // 输出 1,2,3
+      console.log(arr.join());  // join不加参数 默认为 ','
+      console.log(arr.join('|'));  // 输出 1|2|3
+      console.log(arr.join('-'));  // 输出 1-2-3
+      ```
+      - 其他  
+
+      | 方法名 | 说明 | 返回值 |
+      | --- | --- | --- |
+      | concat() | 连接两个或多个数组，不影响原数组 | 返回一个新的数组 |
+      | slice() | 数组截取 slice(begin, end) | 返回被截取项目的新数组 |
+      | splice() | 数组删除 splice(begin, number)，影响原数组 | 返回被删除项目的新数组 |  
+      ``` javascript
+      // examples
+      // 1. concat
+      var arr1 = ['1', '2', '3'];
+      var arr2 = ['4', '5', '6'];
+      var arr3 = arr1.concat(arr2);
+      console.log(arr3);  // 输出 ['1', '2', '3', '4', '5', '6']
+
+      // 2. slice()
+      var arr1 = [1, 2, 3, 4, 5, 6];
+      var arr2 = arr1.slice(2, 5);
+      console.log(arr1);  // 输出 [1, 2, 3, 4, 5, 6]
+      console.log(arr2);  // 输出 [3, 4, 5]
+
+      // 3. splice()
+      var arr1 = [1, 2, 3, 4, 5, 6];
+      var arr2 = arr1.splice(2, 2);
+      console.log(arr1);  // 输出 [1, 2, 5, 6]
+      console.log(arr2);  // 输出 [3, 4]
+      ```
 
 
 
