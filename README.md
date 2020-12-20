@@ -1156,5 +1156,113 @@
       `查找字符串"abcoefoxyozzopp"中所有o出现的位置及次数`
       ``` javascript
       var str = "abcoefoxyozzopp";
-      // 写了一半
+      var pos = [];  // index of 'o'
+      var times = 0;  // times of 'o'
+      var start = 0;
+
+      while(str.indexOf('o', start) !== -1){
+         pos[pos.length] = str.indexOf('o', start);  // 记录找到的o的下标
+         times += 1;  // 出现次数 +1
+         start = str.indexOf('o', start) + 1;  // 下一次从后一个字符开始找
+      }
+
+      console.log(pos);  // 输出下标位置 - 输出 [3, 6, 9, 12]
+      console.log(times);  // 输出出现次数 - 输出 4
       ```
+      - 根据位置返回字符串  
+
+      | 方法名 | 说明 | 使用 |
+      | --- | --- | --- |
+      | charAt(index) | 返回指定位置处的字符 | str.charAt(index) |
+      | charCodeAt(index) | 返回指定位置处的字符的ASCII码 | str.charCodeAt(index) |
+      | str\[index] | 获取指定位置处字符 | H5 与charAt() 等效 |  
+      ``` javascript
+      var str = 'abcdefg';
+      console.log(str.charAt(3));  // 输出 d
+      console.log(str.charCodeAt(3));  // 输出 100
+      console.log(str[3]);  // 输出 d
+      ```
+      - 统计出现次数最多的字符  
+      ``` javascript
+      
+      var str = "abcoefoxyozzopp";
+
+      // 1. 利用charAt()遍历字符串，把每个字符存储给对象，
+      // 如果对象没有该属性则为1，如果对象已存在该属性则+1
+      var o = {};
+      for(var i = 0; i < str.length; i ++){
+         var chars = str.charAt(i);
+         if(o[chars]){  // o[chars]得到的是属性值
+            o[chars] += 1;  // 已有则+1
+         }
+         else{
+            o[chars] = 1;  // 没有则为1
+         }
+      }
+      // console.log(o);  // 输出对象
+
+      // 2. 遍历对象
+      var maxTimes = 0;  // 次数最多的次数
+      var maxChars = '';  // 次数最多的字符
+      for(var k in o){
+         if(maxTimes < o[k]){
+            maxTimes = o[k];
+            maxChars = k;
+         }
+      }
+      console.log(maxChars);  // 输出 'o'
+      console.log(maxTimes);  // 输出 4
+      ```
+      - 字符串拼接、截取、替换  
+
+      | 方法名 | 说明 |
+      | --- | --- |
+      | concat(str1, str2, ...) | 连接两个或多个字符串，拼接字符串，等效于'+' |
+      | substr(start, length) | 从start位置开始，length：取的个数 |
+      | slice(start, end) | 从start位置开始，截取到end位置，end取不到 |
+      | substring(start, end) | 从start位置开始，截取到end位置，end取不到。基本和slice相同，但是不接受负值 |
+      | replace('被替换的字符', '替换后的字符') | 将字符串中的第一个目标字符替换成另一个字符 |  
+      ``` javascript
+      // 1. concat()
+      var str1 = 'hello,'
+      var str2 = ' bye!';
+      console.log(str1.concat(str2));  // 输出 'hello, bye!'
+
+      // 2. substr()
+      var str = 'abcdefg';
+      console.log(str.substr(2, 3));  // 输出 'cde'
+
+      // 3. replace() - 只会替换第一个字符
+      var str = 'abcabc';
+      console.log(str.replace('b', 'd'));  // 输出 'adcabc'
+
+      while(str.indexOf('b') !=== -1){
+         str = str.replace('b', 'd');
+      }
+      console.log(str);  // 全部替换，输出 'adcadc'
+      ```
+      - 字符串转换成数组 split('分隔符')  
+      ``` javascript
+      // 对比join('分隔符') - 数组转换成字符串
+      var str = '1, 2, 3, 4, 5';
+      console.log(str.split(','));  // 输出 ['1', '2', '3', '4', '5']
+      ```
+      - 其他
+        - toUpperCase()  // 转换大写
+        - toLowerCase()  // 转换小写
+      ``` javascript
+      var str1 = 'abcdefg';
+      var str2 = 'ABCDEFG';
+      console.log(str1.toUpperCase());  // 输出 'ABCDEFG'
+      console.log(str2.toLowerCase());  // 输出 'abcdefg'
+      ```
+6. **简单数据类型和复杂数据类型**  
+   1. 简单类型与复杂类型  
+   简单类型又叫做基本数据类型或**值类型**，复杂类型又叫做**引用类型**  
+      - 值类型：简单数据类型/基本数据类型。在存储时变量中存储的是值本身，因此叫做值类型  
+      `string, number, boolean, undefined, null`  
+      其中`null`返回的是`object`类型  
+      - 引用类型：复杂数据类型。在存储时变量中存储的仅仅是地址(引用)，因此叫做引用类型  
+      通过`new`关键字创建的对象(系统对象、自定义对象)，如`Object、Array、Date`等  
+   2. 堆和栈  
+      - 222
