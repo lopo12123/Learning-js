@@ -1323,10 +1323,56 @@
    - 节点：网页中所有内容都是节点(标签、属性、文本、注释等)，DOM中使用`node`表示  
    - **DOM把以上内容都看作是对象**  
 
-3. 获取元素  
+3. 如何获取页面元素  
+   - 根据ID获取  
+   - 根据标签名获取  
+   - 通过H5新增的方法获取  
+   - 特殊元素获取  
+<br>
+
+   1. **根据ID获取**  
+   使用`getElementById()`方法可以获取带有ID的元素对象  
+   ``` javascript
+   // 语法
+   // 1. element是一个Element对象，如果当前文档中拥有特定ID的元素不存在则返回null
+   // 2. id是大小写敏感的字符串，代表了所要查找的元素的唯一ID
+   var element = document.getElementById(id);
+
+   // example
+   <div id='time'>2020-01-01</div>
+   <script>
+      var timer = document.getElementById('time');
+      console.log(timer);  // 输出 <div id='time'>2020-01-01</div>
+      console.log(typeof timer);  // 输出 object
+   </script>
+   ```
+   2. **根据标签名获取**  
+   使用`getElementsByTagName()`方法可以获取带有指定标签名的对象的**集合**  
+   ``` javascript
+   // 语法
+   // 1. 返回的是获取到的元素对象的集合，以伪数组的形式存储
+   // 2. 想要利用内部的对象可以采用遍历的方式
+   // 3. 如果页面中只有一个元素，返回的还是伪数组的形式 [obj1]
+   // 4. 如果页面中没有这个元素，返回的是空的伪数组的形式 []
+   // 5. 获取父元素中 指定标签的子元素(父元素必须是指定的单个元素)
+   //    element.getElementsByTagName('标签名')
+   var elements = document.getElementsByTagName(tagname);
+
+   // example
+   <ul>
+      <li>列表第1栏</li>
+      <li>列表第2栏</li>
+      <li>列表第3栏</li>
+      <li>列表第4栏</li>
+   </ul>
+   <script>
+      var lis = document.getElementsByTagName('li');
+      console.log(lis);  // 输出长度为5的数组，数组元素为对象
+   </script>
+   ```
 
 
-
+4. 444
 
 > ## 二、BOM  
 
