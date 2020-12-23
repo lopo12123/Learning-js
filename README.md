@@ -1370,12 +1370,152 @@
       console.log(lis);  // 输出长度为5的数组，数组元素为对象
    </script>
    ```
+   3. **H5新增方法**  
+      1. 根据类名获取元素  
+      ```document.getElementByClassName()```  
+      2. 选择器  
+      ```document.querySelector('选择器')  // 返回指定选择器的第一个元素对象```  
+      ```document.querySelectorAll('选择器')  // 返回指定选择器的所有元素对象```
+      返回指定选择器的第一个元素对象  
+      ``` javascript
+      // 里面的选择器需要加符号(类 - ‘.’ / ID - ‘#’)
+      <div class="box">盒子</div>
+      <div id="name">名字</div>
+
+      <script>
+         var firstBox = document.querySelect('.box');  // 选择‘类’ 前面加‘.’
+         var firstName = document.querySelect('#name');  // 选择‘ID’ 前面加‘#’
+         var firstDiv = document.querySelect('div')
+      </script>
+      ```
+   4. body和html元素  
+      1. body 元素  
+      ``` javascript
+      // 获取body元素
+      var bodyElement = document.body;
+      ```
+      1. html 元素  
+      ``` javascript
+      // 获取html元素
+      var htmlElement = document.documentElement;
+      ```
+
+4. 事件基础  
+   1. 事件概述  
+   Javascript使我们有能力创建动态页面，而事件是可以被JavaScript侦测到的行为。  
+   2. 事件由三部分组成：**事件源**、**事件类型**、**事件处理程序**  
+   ``` javascript
+   <button id="btn">按钮</button>
+   <script>
+      // 点击一个按钮，弹出对话框
+      // 1. 事件源：事件触发的对象
+      // 2. 事件类型：如何触发(鼠标点击(onclick)、鼠标经过、键盘按下...)
+      // 3. 事件处理程序：通过一个函数赋值的方式 完成
+      
+      var btn = document.getElementById('btn');
+      btn.onclick = function(){
+         alert('点击了按钮');
+      };
+   </script>
+   ```
+   3. 执行事件的步骤  
+      1. 获取事件源  
+      2. 注册事件(绑定事件)  
+      3. 添加事件处理程序(采取函数赋值形式)  
+   4. 常见的**鼠标事件**  
+
+      | 鼠标事件 | 触发条件 |
+      | --- | --- |
+      | onclick | 鼠标点击左键触发 |
+      | onmouseover | 鼠标经过触发 |
+      | onmouseout | 鼠标离开触发 |
+      | onfocus | 获得鼠标焦点触发 |
+      | onblur | 失去鼠标焦点触发 |
+      | onmousemove | 鼠标移动触发 |
+      | onmouseup | 鼠标弹起触发 |
+      | onmousedown | 鼠标按下触发 |
+
+5. 操作元素  
+   1. 改变元素**内容**  
+      1. ```element.innerText```  
+         从起始位置到终止位置的内容，但他去除html标签，同时空格和换行也会去掉  
+      2. ```element.innerHTML```  
+         起始位置到终止位置的全部内容，包括html标签，同时保留空格和换行  
+      ``` javascript
+      <button>显示当前系统时间</button>
+      <div>某个时间</div>
+      <script>
+         // 点击了按钮，div里面的文字会发生变化
+         var btn = document.querySelector('button');
+         var div = document.querySelector('div');
+
+         var date = new Date();
+
+         // 添加事件
+         btn.onclick = function(){
+            now = date.getFullYear().toString() + '-' + date.getMonth().toString() + '-' + date.getDate().toString()
+            div.innerText = now;
+         }
+
+         // 也可以不用添加事件(如下)
+         now = date.getFullYear().toString() + '-' + date.getMonth().toString() + '-' + date.getDate().toString()
+         div.innerText = now;
+      </script>
+      ```
+      3. ```innerText```和```innerHTML```的区别  
+      ``` javascript
+      <div> </div>
+      <p>我是细的<strong>我是粗的</strong></p>
+      <script>
+         // 查看输出区别
+
+         var div = document.querySelector('div');
+         // 1. innerText不识别html标签 非标准
+         div.innerText = '<strong>加粗了</strong>';
+         // 2. innerHTML识别html标签 W3C标准
+         div.innerHTML = '<strong>加粗了</strong>';
+         
+         // 3. 这两个属性是可读写的
+         var p = document.querySelector('p');
+         console.log(p.innerText);
+         console.log(p.innerHTML);
+      </script>
+      ```
 
 
-4. 444
+
+
+
+
+
+
+
 
 > ## 二、BOM  
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 > ## 三、three  
+
+
+
+
+
+
+
+
+
+
+
+
