@@ -4,9 +4,19 @@
         <meta charset="utf-8">
     </head>
     <body>
+        <button>显示当前系统时间</button>
+        <div>某个时间</div>
         <script>
-            var str1 = 'abCdefg';
-            console.log(str1.toUpperCase());
+            // 点击了按钮，div里面的文字会发生变化
+            var btn = document.querySelector('button');
+            var div = document.querySelector('div');
+
+            var date = new Date();
+
+            btn.onclick = function(){
+                now = date.getFullYear().toString() + '-' + date.getMonth().toString() + '-' + date.getDate().toString()
+                div.innerText = now;
+            }
         </script>
     </body>
 </html>
