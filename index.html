@@ -14,7 +14,7 @@
             var date = new Date();
 
             btn.onclick = function(){
-                now = date.getFullYear().toString() + '-' + date.getMonth().toString() + '-' + date.getDate().toString()
+                now = date.getFullYear().toString() + '-' + (date.getMonth() + 1).toString() + '-' + date.getDate().toString()
                 div.innerText = now;
             }
         </script>
