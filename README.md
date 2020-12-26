@@ -1436,7 +1436,7 @@
       | onmousedown | 鼠标按下触发 |
 
 5. 操作元素  
-   1. 改变元素**内容**  
+   1. 改变**元素内容**  
       1. ```element.innerText```  
          从起始位置到终止位置的内容，但他去除html标签，同时空格和换行也会去掉  
       2. ```element.innerHTML```  
@@ -1482,13 +1482,29 @@
       </script>
       ```
 
-   2. 改变元素**属性**  
+   2. 改变**元素属性**  
       - innerText、innerHTML改变元素内容  
       - src、herf(区别: src是顺序加载, 通常用于`<script>`等, 加载完成前会暂停别的工作; herf是并行加载, 通常用于`<a>`、`<link>`等)  
       - id、alt(替换文本: 鼠标悬停图片上/图片无法显示时 显示的文字)、title(鼠标悬停时显示的文字)  
       
-      **Example**: [修改元素属性.html](修改元素属性.html)  
+      **Example**: [修改元素属性](EXAMPLES/Ex1_elementAttributes.html)  
 
+   3. 改变**表单属性**  
+      利用DOM可以操作如下**表单元素的属性**  
+      `type、value、checked、selected、disabled`  
+
+      **Example**: [修改表单元素](EXAMPLES/Ex2_formAttributes_1.html)  
+      **案例**: [显示/隐藏密码](EXAMPLES/Ex2_formAttributes_2.html)  
+   
+   4. 改变**样式属性**  
+      可以通过JS修改元素的大小、颜色、位置等样式  
+      - `element.style` 行内样式操作 (修改较少)  
+      - `element.className` 类名样式操作 (修改较多)  
+      - JS里面的样式采用驼峰命名法，比如fontSize、backgroundColor  
+      - JS修改style样式操作，产生的是**行内样式**，css权重比较高 (行内 > 内嵌 > 引用)  
+
+      **Example**: [修改元素样式](EXAMPLES/Ex3_styleAttributes_1.html)  
+      **案例**: [显示/隐藏二维码图片](EXAMPLES/EX3_styleAttributes_2.html)
 
 
 
