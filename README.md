@@ -1503,7 +1503,7 @@
       - JS里面的样式采用驼峰命名法，比如fontSize、backgroundColor  
       - JS修改style样式操作，产生的是**行内样式**，css权重比较高 (行内 > 内嵌 > 引用)  
 
-      **Example**: [修改元素样式](EXAMPLES/Ex3_styleAttributes_1.html)  
+      **Example**: [修改元素样式 - 两种方法](EXAMPLES/Ex3_styleAttributes_1.html)  
       **案例**: [显示/隐藏二维码图片](EXAMPLES/EX3_styleAttributes_2.html)  
 
 
