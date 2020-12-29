@@ -1506,8 +1506,9 @@
       **Example**: [修改元素样式 - 两种方法](EXAMPLES/Ex3_styleAttributes_1.html)  
       **案例**: [显示/隐藏二维码图片](EXAMPLES/EX3_styleAttributes_2.html)  
 
-
-
+   5. **案例: 密码框格式提示错误信息**  
+      - 用户如果离开密码框，里面输入的个数不是6~16则提示错误信息，否则提示输入正确信息  
+      **案例**: [密码框格式提示错误信息](EXAMPLES/Ex4_wrongPasswordInfo.html)
 
 
 
