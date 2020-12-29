@@ -1508,7 +1508,20 @@
 
    5. **案例: 密码框格式提示错误信息**  
       - 用户如果离开密码框，里面输入的个数不是6~16则提示错误信息，否则提示输入正确信息  
-      **案例**: [密码框格式提示错误信息](EXAMPLES/Ex4_wrongPasswordInfo.html)
+      **案例**: [密码框格式提示错误信息](EXAMPLES/Ex4_wrongPasswordInfo.html)  
+
+   6. 操作元素**总结**  
+      ![PHO7_操作元素总结](PHOTOS/PHO7_操作元素总结.png)  
+
+      **练习**  
+      - [用户名显示/隐藏内容](EXAMPLES/Ex2_formAttributes_2.html)  
+      - [关闭广告](EXAMPLES/EX3_styleAttributes_2.html)  
+      - [下拉菜单](EXAMPLES/Ex5_pullMenu.html) 
+      - [开关灯](EXAMPLES/Ex5_switchLight.html)  
+
+
+
+
 
 
 
