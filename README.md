@@ -1516,13 +1516,164 @@
       **练习**  
       - [用户名显示/隐藏内容](EXAMPLES/Ex2_formAttributes_2.html)  
       - [关闭广告](EXAMPLES/EX3_styleAttributes_2.html)  
-      - [下拉菜单](EXAMPLES/Ex5_pullMenu.html) 
+      - [**下拉菜单**](EXAMPLES/Ex5_pullMenu.html) 
       - [开关灯](EXAMPLES/Ex5_switchLight.html)  
 
+6. **自定义**属性  
+   1. **获取**属性值  
+      `element.属性 / element.getAttribute('属性')`  
+      - `element.属性;` 获取内置属性值(元素本身自带的属性)  
+      - `element.getAttribute(属性);` 主要获取自定义的属性(i标准) 程序员自定义的属性  
 
+   2. **设置**属性值  
+      `element.属性 = '值' / element.setAttribute('属性', '值')`  
+      - `element.属性 = '值';` 主要针对内置属性  
+      - `element.setAttribute('属性', '值');` 主要针对自定义属性  
 
+   3. **移除**属性值  
+      `element.removeAttribute('属性');`  
 
+   **案例**: [**Tab栏切换显示**](EXAMPLES/Ex6_tabBarSwitch.html)  
 
+   4. **H5自定义属性**  
+      1. H5规定自定义属性以`data-`开头作为属性名并赋值，如`<div data-index='1'></div>`  
+      2. 获取方法  
+         1. 兼容性获取 `element.getAttribute()`  
+         2. H5新增(只能获取`data-`开头的属性) `element.dataset.属性名 / element.dataset['属性名']`(此处的属性名不用加`data-`)  
+
+7. 节点操作  
+   1. 获取元素两种方式  
+      1. 利用DOM提供的方法获取元素  
+         - `document.getElementById()`等  
+         - 逻辑性不强，繁琐  
+      2. 利用节点层级关系获取元素  
+         - 利用父子兄节点关系获取元素  
+         - 逻辑性强，但兼容性较差  
+
+   2. 节点概述  
+      - 网页中所有内容都是节点(标签、属性、文本、注释等)，在DOM中，节点使用`node`来表示  
+      - 一般地，节点至少拥有`nodeType(节点类型)`、`nodeName(节点名称)`、`nodeValue(节点值)`  
+      - 元素节点 nodeType为1; 属性节点 nodeType为2; 文本节点 nodeType为3(文本节点包含文字、空格、换行等)
+
+   3. 节点层级  
+      利用DOM树可以把节点划分为不同的层级关系，常见的是**父子兄层级关系**  
+      ![DOM树](PHOTOS/PHO5_DOM树.png)  
+
+      1. 父节点 `parentNode`  
+         ``` html
+         <div class='parent'>
+            <div class='son'></div>
+         </div>
+         <script>
+            var son = document.querySelector(.son);
+            var parent = son.parentNode;  // 得到的是离元素最近的父节点 / 如果找不到父节点就返回为 null
+            console.log(parent);
+         </script>
+         ```
+      2. 子节点 `childNodes`  
+         ``` html
+         <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+         </ul>
+         <script>
+            var ul = document.querySelector(ul);
+            var lis1 = ul.childNodes;  // (标准) 获取所有类型的子节点(包括文本节点换行)
+            var lis2 = ul.children;  // (非标准) 获取所有子节点中的元素节点
+            // 可以通过判断语句 nodeType == 1 来获取元素节点
+         </script>
+         ```
+         - `parentNode.firstChild` 返回第一个**子节点**，找不到则返回null(类型包含所有节点)  
+         - `parentNode.firstElementChild` 返回第一个**子元素节点**，找不到则返回null(IE9以上兼容)  
+         - `parentNode.lastChild` 返回最后一个**子节点**，找不到则返回null(类型包含所有节点)  
+         - `parentNode.lastElementChild` 返回最后一个**子元素节点**，找不到则返回null(IE9以上兼容)  
+         - `parentNode.children[0]` 返回第一个**子元素节点**  
+         - `parentNode.children[parentNode.children.length - 1]`  返回最后一个**子元素节点**  
+      3. 兄弟节点 `node.previousSibling`、`node.nextSibling`  
+         ``` html
+         <div>我是div1</div>
+         <div id='me'>我是div2</div>
+         <div>我是div3</div>
+         <script>
+            var me = document.getElementById('me');
+            console.log(me.previousSibling);  // 得到的是文本节点
+            console.log(me.nextSibling);  // 得到的是文本节点
+
+            console.log(me.previousElementSibling);  // 得到元素节点
+            console.log(me.nextElementSibling);  // 得到元素节点
+         </script>
+         ```  
+
+   4. 创建节点 `document.createElement('tagName')`  
+      ``` html
+      <ul>
+         <li id='me'>li 1</li>
+      </ul>
+      <script>
+         var ul = document.querySelector('ul');
+
+         // 1. 创建节点 document.createElement('tagName');
+         var li = document.createElement('li');
+
+         // 2. 添加节点 node.appendChild(child); 在元素的末尾追加节点
+         ul.appendChild(li);
+
+         // 3. 添加节点 node.insertBefore(child, 指定元素); 在指定元素的前面添加节点
+         var me = document.getElementById('me');
+         ul.insertBefore(li, me);
+      </script>
+      ```
+      **案例**: [简单版发布留言](EXAMPLES/Ex7_addOrDeleteNode.html)  
+   
+   5. 删除节点 `node.removeChild(child)`  
+      ``` html
+      <ul>
+         <li>1</li>
+         <li>2</li>
+         <li>3</li>
+      </ul>
+      <button>点击删除</button>
+      <script>
+         var ul = document.querySelector('ul');
+         var btn = document.querySelector('button');
+
+         btn.onclick = function() {
+            ul.removeChild(ul.children[0]);  // 删除第一个子节点
+         }
+      </script>
+      ```
+      **案例**: [简单版删除留言](EXAMPLES/Ex7_addOrDeleteNode.html)  
+
+   6. 复制节点 `node.cloneNode()`  
+      ``` html
+      <ul>
+         <li>1</li>
+         <li>2</li>
+         <li>3</li>
+      </ul>
+      <script>
+         // 1. 如果括号里参数为空或false, 则是浅拷贝，只克隆复制节点本身，不克隆里面的子节点
+         // 2. 括号里参数为true则深拷贝，复制标签和里面的内容
+         var ul = document.querySelector('ul');
+         var newLi = ul.children[0].cloneNode();  // 克隆第一个子元素节点
+         var newLili = ul.children[0].cloneNode(true);
+         ul.appendChild(newLi);  // 新增为 <li></li>, 无内容
+         ul.appendChild(newLili);  // 新增为 <li>1</li>, 包含所有内容
+      </script>
+      ```
+
+8. 创建元素对比  
+   1. `document.write()`  
+      如果页面文档流加载完毕再调用这句话会导致页面重绘  
+   2. `innerHTML`  
+      创建多个元素时，拼接字符串会导致效率很低  
+      不要拼接字符串，采取数组形式拼接能提高效率
+   3. `document.createElement()`
+      创建多个元素效率稍低一些，但结构更清晰  
+
+9. 事件高级  
 
 
 
