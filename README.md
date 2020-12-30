@@ -1674,6 +1674,96 @@
       创建多个元素效率稍低一些，但结构更清晰  
 
 9. 事件高级  
+   1. 注册事件概述  
+      1. 传统注册方式  
+         - 利用on开头的事件(onclick、onblur...)  
+         - 特点: 注册事件的**唯一性**  
+         - 同一个元素同一个事件只能设置**一个**处理函数，最后注册的处理函数会覆盖前面注册的处理函数  
+      2. 方法监听注册方式  
+         - w3c标准 推荐方式  
+         - `addEventListener()` 它是一个方法  
+         - IE9之前的IE不支持此方法，可以使用`attachEvent()`代替  
+         - 特点: 同一个元素同一个事件可以注册**多个**监听器  
+         - 按注册顺序依次执行  
+      3. `addEventListener` 事件监听方式  
+         **`eventTarget.addEventListener(type, listener[, useCapture])`**  
+         `eventTarget.addEventListener()`方法将指定的监听器注册到`eventTarget(目标对象)`上，当该对象触发指定的事件时，就会执行事件处理函数。  
+
+         该方法接收三个参数:  
+         - type: 事件类型字符串，比如click、mouseover，**注意**此处不要带on  
+         - listener: 事件处理函数，事件发生时，会调用该监听函数  
+         - useCapture: 可选参数，是一个布尔值，默认为false  
+
+         **案例**: [两种事件注册方式](EXAMPLES/Ex8_eventRegister.html)  
+   2. 删除事件(解绑事件)  
+      - `enentTarget.onclick = null`  
+      - `eventTarget.removeEventListener(type, listener[, useCapture])`  
+
+      **案例**: [删除事件](EXAMPLES/Ex8_eventDelete.html)  
+   3. 事件流  
+      - 事件流描述的是从页面中接收事件的顺序  
+      - 事件发生时会在元素节点之间按照特定的顺序传播，这个**传播过程**即**DOM事件流**  
+      比如给一个div注册了点击事件  
+      ![DOM事件流_1](PHOTOS/PHO8_DOM事件流_1.png)
+      - DOM事件流分为**三个阶段**  
+        1. 捕获阶段  
+        2. 当前目标阶段  
+        3. 冒泡阶段  
+      ![DOM事件流_2](PHOTOS/PHO8_DOM事件流_2.png)  
+      - **注意**  
+        1. JS代码中只能执行捕获或冒泡其中的一个阶段  
+        2. `onclick`和`attachEvent`只能得到**冒泡阶段**  
+        3. `addEventListener(type, listener[, useCapture])`第三个参数如果是**true**，表示在事件**捕获阶段**调用事件处理程序；如果是**false**(不写默认为false)，表示在事件**冒泡阶段**调用事件处理程序  
+
+      **案例**: [DOM事件流代码验证](EXAMPLES/Ex8_eventStream.html)  
+   4. 事件对象  
+      `div.onclick = function(event) {}`  
+      - `event`就是一个事件对象，写在侦听函数的小括号里，当作**形参**看待  
+      - 事件对象只有有了事件才会存在，它是系统自动创建的，不需要传递参数  
+      - 事件对象是事件的一系列相关数据的集合，跟事件相关(比如: 鼠标事件 - 点击的鼠标按键、坐标；键盘事件 - 按下的按键等)  
+      - 事件对象可以自己命名(event、evt、e等)  
+      - IE678不兼容(使用`window.event`代替)  
+      ``` html
+      <div></div>
+      <script>
+         // 查看event内的属性
+         var div = document.querySelector('div');
+         div.onclick = function(event) {
+            console.log(event);
+         }
+      </script>
+      ```  
+      - `e.target`和`this`的区别  
+         ``` html
+         <div>123</div>
+         <ul>
+            <li>1</li>
+         </ul>
+         <script>
+            var div = document.querySelector('div');
+            var ul = document.querySelector('ul');
+            var li = document.querySelector('li');
+
+            // 1. e.target 返回的是触发事件的对象(元素)
+            //    this 返回的是绑定事件的对象(元素)
+            ul.addEventListener('', function(e) {
+               console.log(e.target);  // 输出 li(触发事件的对象)
+               console.log(this);  // 输出 ul(绑定事件对象)
+            });
+         </script>
+         ```  
+      - 阻止默认行为 `e.preventDefault()`  
+         ``` html
+         <a href='www.baidu.com'>baidu</a>
+         <script>
+            var a = document.querySelector('a');
+            a.addEventListener('click', function(e) {
+               e.preventDefault();  // DOM标准写法
+            });
+         </script>
+         ```
+
+
 
 
 
