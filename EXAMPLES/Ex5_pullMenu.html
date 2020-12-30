@@ -31,9 +31,9 @@
     <body>
         <div id="wholeMenu">
             <div id="menu">下拉菜单</div>
-            <div class="opt">菜单选项1</div>
-            <div class="opt">菜单选项2</div>
-            <div class="opt">菜单选项3</div>
+            <div class="opt">red</div>
+            <div class="opt">yellow</div>
+            <div class="opt">green</div>
         </div>
         <script>
             var menu = document.getElementById('menu');
@@ -52,12 +52,15 @@
                 }
                 menu.style.backgroundColor = 'pink';  // 离开恢复
             }
-            for(var i=0; i < opts.length; i ++) {
+            for(var i=0; i < opts.length; i ++) {  // 遍历 为事件注册函数
                 opts[i].onmouseover = function() {
                     this.style.backgroundColor = 'orange';  // 选中变色
                 }
                 opts[i].onmouseleave = function() {
                     this.style.backgroundColor = 'beige';  // 离开恢复
+                }
+                opts[i].onclick = function() {  // 点击更换背景颜色
+                    document.body.style.backgroundColor = this.innerHTML;
                 }
             }
         </script>
