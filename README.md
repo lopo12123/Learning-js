@@ -1763,14 +1763,21 @@
          </script>
          ```
 
-
-
-
+<br>
 
 > ## 二、BOM  
-
-
-
+1. 页面加载事件\(html、dom、css等\)  
+   ``` javascript
+   window.onload = function() {
+      // 方法1 - 绑定多个onload，前面的会被后面的取代
+      // *** ***
+   }
+   window.addEventListener("load", function() {
+      // 方法2 - 可以同时绑定多个
+      // *** ***
+   })
+   ```
+2. 窗口加载事件\(仅当dom加载\)  
 
 
 
