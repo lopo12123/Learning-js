@@ -1,24 +1,18 @@
-<!DOCTYPE=html>
+<!DOCTYPE html>
 <html>
-<head>
-</head>
+    <head>
+    </head>
 
-<body>
-<button onclick="funcTest()">111</button>
-<script>
-function a(){
-var i = 0;
-function b(){
-alert(++i);
-}
-return b;
-}
+    <body>
+        <script>
+            var a;
+            var b;
+            a = 'aaa';
+            b = a;
+            b += 'a';
 
-var funcTest = () => {
-let a = 0.1 + 0.2;
-alert(a);
-};
-</script>
-</body>
+            console.log(a, b);
+        </script>
+    </body>
 
 </html>
